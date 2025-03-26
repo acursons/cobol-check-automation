@@ -6,7 +6,7 @@
 LOWERCASE_USERNAME=$(echo "$ZOWE_USERNAME" | tr '[:upper:]' '[:lower:]')
 
 echo $LOWERCASE_USERNAME
-echo 'host $ZOWE_OPT_HOST port $ZOWE_OPT_PORT'
+echo "host $ZOWE_OPT_HOST port $ZOWE_OPT_PORT"
 
 # Check if directory exists, create if it doesn't
 if ! zowe zos-files list uss-files "/z/$LOWERCASE_USERNAME/cobolcheck" &>/dev/null; then
