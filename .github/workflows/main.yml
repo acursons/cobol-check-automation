@@ -10,20 +10,23 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    
     - name: Set up Java
       uses: actions/setup-java@v2
       with:
         java-version: '11'
         distribution: 'microsoft'
-    - name: Setup node
-      uses: actions/setup-node@v2
-      with:
-        node-version: '22'
+        
     - name: Install zowe cli
-      run: |
-        npm install -g @zowe/cli
-    - name: Run COBOL Check
+      run:  npm install -g @zowe/cli@latest
+
+    - name: Setup Mainframe environment
       env:
+        ZOWE_OPT_HOST: 204.90.115.200
+        ZOWE_OPT_PORT: 10443
+        ZOWE_OPT_USER: ${{ secrets.ZOWE_USERNAME }}
+        ZOWE_OPT_PASSSWORD: ${{ secrets.ZOWE_PASSWORD }}
+        ZOWE_OPT_REJECT_UNAUTHORIZED: false
         ZOWE_USERNAME: ${{ secrets.ZOWE_USERNAME }}
         ZOWE_PASSWORD: ${{ secrets.ZOWE_PASSWORD }}
       run: |
