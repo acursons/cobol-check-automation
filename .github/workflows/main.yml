@@ -20,15 +20,10 @@ jobs:
     - name: Install zowe cli
       run:  npm install -g @zowe/cli@latest
 
+    - name: Create zowe profile
+      run: zowe profiles create zosmf-profile myprofile --host 204.90.115.200 --port 10443 --user ${{ secrets.ZOWE_USERNAME }} --password ${{ secrets.ZOWE_PASSWORD }}
+
     - name: Setup Mainframe environment
-      env:
-        ZOWE_OPT_HOST: 204.90.115.200
-        ZOWE_OPT_PORT: 10443
-        ZOWE_OPT_USER: ${{ secrets.ZOWE_USERNAME }}
-        ZOWE_OPT_PASSSWORD: ${{ secrets.ZOWE_PASSWORD }}
-        ZOWE_OPT_REJECT_UNAUTHORIZED: false
-        ZOWE_USERNAME: ${{ secrets.ZOWE_USERNAME }}
-        ZOWE_PASSWORD: ${{ secrets.ZOWE_PASSWORD }}
       run: |
         chmod +x .github/scripts/zowe_operations.sh
         .github/scripts/zowe_operations.sh
