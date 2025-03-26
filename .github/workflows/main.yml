@@ -30,7 +30,7 @@ jobs:
         ZOWE_USERNAME: ${{ secrets.ZOWE_USERNAME }}
         ZOWE_PASSWORD: ${{ secrets.ZOWE_PASSWORD }}
       run: |
-        zowe config list
+        zowe zos-files list ds Z67421.*
 
     - name: Setup Mainframe environment
       run: |
